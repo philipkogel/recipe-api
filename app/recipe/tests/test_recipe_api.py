@@ -2,7 +2,6 @@
 
 from decimal import Decimal
 
-from decimal import Decimal
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
@@ -24,6 +23,7 @@ def details_url(recipe_id):
     """Create and return a recipe detail URL."""
     return reverse('recipe:recipe-detail', args=[recipe_id])
 
+
 def create_recipe(user, **params):
     """Create and return a sample recipe."""
     defaults = {
@@ -40,6 +40,7 @@ def create_recipe(user, **params):
         **defaults,
     )
     return recipe
+
 
 def create_user(**params):
     """Create and return a new user."""
@@ -62,7 +63,10 @@ class PrivateRecipeAPITests(TestCase):
     """Test authenticated API requests."""
     def setUp(self) -> None:
         self.client = APIClient()
-        self.user = create_user(email='user@example.com', password='testpass123')
+        self.user = create_user(
+            email='user@example.com',
+            password='testpass123',
+        )
         self.client.force_authenticate(self.user)
 
     def test_retrieve_recipes(self):
@@ -162,7 +166,7 @@ class PrivateRecipeAPITests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         recipe.refresh_from_db()
-        for k,v in payload.items():
+        for k, v, in payload.items():
             self.assertEqual(getattr(recipe, k), v)
         self.assertEqual(recipe.user, self.user)
 
@@ -196,5 +200,3 @@ class PrivateRecipeAPITests(TestCase):
 
         self.assertTrue(res.status_code, status.HTTP_404_NOT_FOUND)
         self.assertTrue(Recipe.objects.filter(id=recipe.id).exists())
-
-
