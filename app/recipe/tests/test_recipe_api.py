@@ -314,7 +314,7 @@ class PrivateRecipeAPITests(TestCase):
             'tags': []
         }
         url = details_url(recipe.id)
-        res = self.client.patch(url, payload, fromat='json')
+        res = self.client.patch(url, payload, format='json')
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(recipe.tags.count(), 0)
