@@ -13,6 +13,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 
+
 def recipe_image_file_path(instance, filename):
     """Generate filepath for new Recipe image."""
     ext = os.path.splitext(filename)[1]
