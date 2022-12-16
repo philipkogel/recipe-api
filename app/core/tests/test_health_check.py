@@ -10,12 +10,12 @@ from rest_framework.test import APIClient
 
 
 class HealthCheckTests(TestCase):
-  """Test the health check API."""
+    """Test the health check API."""
 
-  def test_health_check(self):
-    """Test health check API."""
-    client = APIClient()
-    url = reverse('health-check')
-    res = client.get(url)
+    def test_health_check(self):
+        """Test health check API."""
+        client = APIClient()
+        url = reverse('health-check')
+        res = client.get(url)
 
-    self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
