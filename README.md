@@ -17,3 +17,8 @@ docker-compose run --rm app sh -c "python manage.py test"
 ```
 docker-compose run --rm app sh -c "flake8"
 ```
+
+# Run on server for deploy
+```
+docker-compose -f docker-compose-deploy.yml up -d
+```
